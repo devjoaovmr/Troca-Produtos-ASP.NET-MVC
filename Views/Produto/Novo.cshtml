@@ -1,0 +1,51 @@
+﻿@model ProdutoModel
+
+<h1>Produto - Novo</h1>
+
+<div class="container">   
+    <div class="row">       
+        <div class="col-lg-12">          
+            <div class="well">
+                @if (!string.IsNullOrEmpty(ViewBag.Mensagem))
+                {
+                    <div class="alert alert-danger">@ViewBag.Mensagem</div>
+                }
+                <form action="/Produto/Novo" method="post">                    
+                    <div class="form-group">
+                        <label>Nome:</label>
+                        <input type="text" name="nome" value="@Model.Nome" class="form-control w-50" size="30" />
+                    </div>
+                    <div class="form-group">
+                        <label>Descrição:</label>
+                        <input type="text" name="descricao" value="@Model.Descricao" class="form-control w-75" />
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Disponivel" class="form-check-input" />
+                        <label class="form-check-label">Disponível</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo: @Model.TipoProdutoId </label>
+                        <select class="form-control w-75" asp-for="TipoProdutoId" asp-items="@ViewBag.TipoProdutos">
+                            <option value="0">Selecione</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sugestão de troca:</label>
+                        <textarea name="SugestaoTroca" class="form-control w-75">@Model.SugestaoTroca</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Valor:</label>
+                        <input type="number" name="valor" value="@Model.Valor" class="form-control w-25" />
+                    </div>
+                    <div class="form-group">
+                        <label>Data da Expiração:</label>
+                        <input asp-for="DataExpiracao" class="form-control w-25" />
+                    </div>
+                    <hr class="hr" />
+                    <input type="submit" value="Enviar" />
+                </form>            
+            </div>      
+        </div>   
+    </div>    
+</div>

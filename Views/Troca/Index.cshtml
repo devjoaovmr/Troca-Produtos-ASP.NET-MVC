@@ -1,0 +1,66 @@
+﻿@model Fiap.Web.Donation1.Models.TrocaModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Troca</h1>
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Index">
+            @if (!string.IsNullOrEmpty(ViewBag.Erro))
+            {
+                <div class="alert alert-danger">@ViewBag.Erro</div>
+            }
+
+            <input type="hidden" asp-for="ProdutoId1" />
+
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Nome
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ProdutoModel1.Nome)
+                </dd>
+                <dt class="col-sm-2">
+                    Descrição
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ProdutoModel1.Descricao)
+                </dd>
+                <dt class="col-sm-2">
+                    Valor
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ProdutoModel1.Valor)
+                </dd>
+                <dt class="col-sm-2">
+                    Sugestão
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ProdutoModel1.SugestaoTroca)
+                </dd>
+                <dt class="col-sm-2">
+                    Produto
+                </dt>
+                <dd class="col-sm-10">
+                    <select asp-for="ProdutoId2" class="form-control" asp-items="ViewBag.MeusProdutos">
+                        <option value="0">Selecione seu produto</option>
+                    </select>
+                </dd>
+            </dl>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-controller="Home" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
