@@ -72,10 +72,18 @@ namespace Fiap.Web.Donation1.Controllers
         [HttpGet]
         public IActionResult Editar(int Id)
         {
-            ComboTipoProduto();
+            if (UsuarioId != 0)
+            {
+                ComboTipoProduto();
+                var produto = produtoRepository.FindById(Id);
+                return View(produto);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
 
-            var produto = produtoRepository.FindById(Id);
-            return View(produto);
+
         }
         [HttpPost]
         public IActionResult Editar(ProdutoModel produtoModel)
