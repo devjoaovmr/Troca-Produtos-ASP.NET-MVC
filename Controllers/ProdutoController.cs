@@ -35,9 +35,21 @@ namespace Fiap.Web.Donation1.Controllers
         [HttpGet]
         public IActionResult Novo()
         {
-            ComboTipoProduto();
+            if (UsuarioId != 0)
+            {
+                ComboTipoProduto();
+                return View(new ProdutoModel());
 
-            return View(new ProdutoModel());
+
+            }
+            else
+            {
+                return RedirectToAction("Index");
+
+            }
+
+
+
         }
         [HttpPost]
         public IActionResult Novo(ProdutoModel produtoModel)
